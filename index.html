@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Acción Tutorial · IE Politécnico del Pozón</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep:   #1B5E20;
+    --green-mid:    #2E7D32;
+    --green-light:  #4CAF50;
+    --green-pale:   #E8F5E9;
+    --gold:         #F9A825;
+    --gold-light:   #FFF8E1;
+    --blue:         #1565C0;
+    --blue-pale:    #E3F2FD;
+    --purple:       #6A1B9A;
+    --purple-pale:  #F3E5F5;
+    --dark:         #1A1A1A;
+    --gray:         #546E7A;
+    --light:        #F5F5F5;
+    --white:        #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--green-deep);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: #A5D6A7; text-decoration: none; font-size: 0.82rem;
+    font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #145214 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(249,168,37,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(76,175,80,0.12) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(249,168,37,0.15);
+    border: 1px solid rgba(249,168,37,0.4);
+    color: var(--gold); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 0.4rem 1.2rem; border-radius: 2rem; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin-bottom: 1rem;
+    animation: fadeUp 0.6s 0.15s ease both;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem); color: #A5D6A7;
+    font-style: italic; margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-meta {
+    display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.45s ease both;
+  }
+  .hero-meta-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #C8E6C9; font-size: 0.9rem;
+    padding: 0.5rem 1.2rem; border-radius: 0.4rem;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 1px;
+    text-transform: uppercase; animation: bounce 2s infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--green-light);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700;
+    color: var(--green-deep); margin-bottom: 0.75rem; line-height: 1.2;
+  }
+  .section-divider {
+    width: 3rem; height: 3px; background: var(--gold);
+    border-radius: 2px; margin-bottom: 2.5rem;
+  }
+
+  /* ── INTRO ── */
+  #intro { background: var(--white); }
+  .intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    align-items: start;
+  }
+  .intro-text p {
+    font-size: 1.05rem; line-height: 1.8; color: #37474F; margin-bottom: 1rem;
+  }
+  .justif-card {
+    background: var(--green-deep); border-radius: 1rem;
+    padding: 2rem; color: var(--white);
+  }
+  .justif-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); margin-bottom: 1rem; font-size: 1.2rem;
+  }
+  .justif-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .justif-list li {
+    padding-left: 1.3rem; position: relative;
+    font-size: 0.95rem; color: #C8E6C9; line-height: 1.5;
+  }
+  .justif-list li::before {
+    content: '▸'; position: absolute; left: 0; color: var(--gold);
+  }
+
+  /* ── DIAGNÓSTICO ── */
+  #diagnostico { background: var(--green-pale); }
+  .diag-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .diag-card {
+    background: var(--white); border-radius: 0.75rem;
+    padding: 1.75rem; border-left: 4px solid var(--green-light);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .diag-card:nth-child(2) { border-color: var(--gold); }
+  .diag-card:nth-child(3) { border-color: var(--blue); }
+  .diag-card:nth-child(4) { border-color: var(--purple); }
+  .diag-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .diag-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .diag-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--green-deep); margin-bottom: 0.75rem; font-size: 1.1rem;
+  }
+  .diag-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .diag-card ul li {
+    font-size: 0.9rem; color: var(--gray); padding-left: 1rem;
+    position: relative; line-height: 1.5;
+  }
+  .diag-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--green-light); font-size: 1.2rem; }
+
+  /* ── MODALIDADES ── */
+  #modalidades { background: var(--white); }
+  .mod-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .mod-card {
+    border-radius: 0.75rem; padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: transform 0.2s;
+  }
+  .mod-card:hover { transform: translateY(-4px); }
+  .mod-card.individual { background: var(--blue-pale); border-top: 4px solid var(--blue); }
+  .mod-card.grupal     { background: var(--green-pale); border-top: 4px solid var(--green-light); }
+  .mod-card.tecnica    { background: var(--gold-light); border-top: 4px solid var(--gold); }
+  .mod-card.diversidad { background: var(--purple-pale); border-top: 4px solid var(--purple); }
+  .mod-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .mod-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--green-deep); font-size: 1.15rem; margin-bottom: 0.5rem;
+  }
+  .mod-card p { font-size: 0.95rem; color: #455A64; line-height: 1.7; margin-bottom: 0.75rem; }
+  .mod-badge {
+    display: inline-block; font-size: 0.78rem; font-weight: 700;
+    padding: 0.3rem 0.8rem; border-radius: 2rem;
+    background: rgba(0,0,0,0.08); color: #37474F;
+  }
+
+  /* ── PAT ETAPAS ── */
+  #pat { background: var(--green-pale); }
+  .etapa-block { margin-bottom: 3rem; }
+  .etapa-header {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--green-deep); color: var(--white);
+    padding: 1rem 1.5rem; border-radius: 0.75rem 0.75rem 0 0;
+    margin-bottom: 0;
+  }
+  .etapa-header h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+  }
+  .etapa-header span { font-size: 1.5rem; }
+  .etapa-sub {
+    background: var(--gold); color: var(--dark);
+    padding: 0.5rem 1.5rem; font-size: 0.85rem; font-weight: 700;
+  }
+  .etapa-cols {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--white);
+    border-radius: 0 0 0.75rem 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .etapa-col { padding: 1.5rem; border-right: 1px solid #E0E0E0; }
+  .etapa-col:last-child { border-right: none; }
+  .etapa-col-title {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 1rem; padding-bottom: 0.5rem;
+    border-bottom: 2px solid;
+  }
+  .etapa-col.academica .etapa-col-title { color: var(--blue); border-color: var(--blue); }
+  .etapa-col.socioemocional .etapa-col-title { color: var(--green-mid); border-color: var(--green-light); }
+  .etapa-col.vocacional .etapa-col-title { color: #E65100; border-color: var(--gold); }
+  .etapa-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .etapa-col ul li {
+    font-size: 0.88rem; color: var(--gray); padding-left: 1rem;
+    position: relative; line-height: 1.5;
+  }
+  .etapa-col ul li::before { content: '✓'; position: absolute; left: 0; color: var(--green-light); font-size: 0.8rem; }
+
+  /* ── CRONOGRAMA ── */
+  #cronograma { background: var(--white); }
+  .crono-table {
+    width: 100%; border-collapse: collapse;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-radius: 0.75rem; overflow: hidden;
+  }
+  .crono-table thead tr { background: var(--green-deep); }
+  .crono-table thead th {
+    color: var(--white); padding: 1rem 1.2rem;
+    font-size: 0.85rem; font-weight: 700; text-align: left;
+    letter-spacing: 0.5px;
+  }
+  .crono-table tbody tr { border-bottom: 1px solid #E8F5E9; transition: background 0.15s; }
+  .crono-table tbody tr:nth-child(odd) { background: var(--green-pale); }
+  .crono-table tbody tr:nth-child(even) { background: var(--white); }
+  .crono-table tbody tr:hover { background: #C8E6C9; }
+  .crono-table td {
+    padding: 0.9rem 1.2rem; font-size: 0.9rem; color: var(--dark);
+    vertical-align: top; line-height: 1.5;
+  }
+  .crono-table td:first-child { font-weight: 700; color: var(--green-deep); white-space: nowrap; }
+  .etapa-tag {
+    display: inline-block; font-size: 0.75rem; font-weight: 700;
+    padding: 0.2rem 0.7rem; border-radius: 2rem; color: var(--white);
+  }
+  .tag-ingreso    { background: var(--blue); }
+  .tag-desarrollo { background: var(--green-mid); }
+  .tag-media      { background: var(--purple); }
+  .tag-egreso     { background: #E65100; }
+
+  /* ── EVALUACIÓN ── */
+  #evaluacion { background: var(--green-pale); }
+  .eval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .eval-card { border-radius: 0.75rem; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .eval-card.formativa { background: var(--white); border-top: 4px solid var(--green-light); }
+  .eval-card.sumativa  { background: var(--green-deep); border-top: 4px solid var(--gold); }
+  .eval-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1rem;
+  }
+  .eval-card.formativa h3 { color: var(--green-deep); }
+  .eval-card.sumativa  h3 { color: var(--gold); }
+  .eval-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .eval-list li { padding-left: 1.3rem; position: relative; line-height: 1.5; font-size: 0.95rem; }
+  .eval-card.formativa .eval-list li { color: #37474F; }
+  .eval-card.sumativa  .eval-list li { color: #C8E6C9; }
+  .eval-list li::before { content: '▸'; position: absolute; left: 0; }
+  .eval-card.formativa .eval-list li::before { color: var(--green-light); }
+  .eval-card.sumativa  .eval-list li::before { color: var(--gold); }
+
+  /* ── CONCLUSIONES ── */
+  #conclusiones { background: var(--white); }
+  .conclu-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; }
+  .conclu-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .conclu-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 1.25rem; background: var(--green-pale);
+    border-radius: 0.5rem; border-left: 3px solid var(--green-light);
+  }
+  .conclu-num {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900;
+    color: var(--green-light); min-width: 1.8rem; line-height: 1;
+  }
+  .conclu-text { font-size: 0.95rem; color: #37474F; line-height: 1.6; }
+  .mejoras-card {
+    background: var(--green-deep); border-radius: 0.75rem;
+    padding: 2rem; height: fit-content;
+  }
+  .mejoras-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); margin-bottom: 1.25rem; font-size: 1.2rem;
+  }
+  .mejoras-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .mejoras-list li {
+    color: #C8E6C9; font-size: 0.93rem; padding-left: 1.3rem;
+    position: relative; line-height: 1.5;
+  }
+  .mejoras-list li::before { content: '💡'; position: absolute; left: 0; font-size: 0.8rem; top: 0.15rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-deep); color: #A5D6A7;
+    text-align: center; padding: 2.5rem 1rem;
+  }
+  footer .footer-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--white); font-size: 1.4rem; margin-bottom: 0.5rem;
+  }
+  footer p { font-size: 0.85rem; margin-bottom: 0.25rem; }
+  footer .footer-quote {
+    margin-top: 1.5rem; font-style: italic; color: #81C784;
+    font-size: 0.95rem; max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+  .footer-divider {
+    width: 60px; height: 2px; background: var(--gold);
+    margin: 1rem auto;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(-8px); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .intro-grid, .diag-grid, .mod-grid, .eval-grid, .conclu-grid { grid-template-columns: 1fr; }
+    .etapa-cols { grid-template-columns: 1fr; }
+    .etapa-col { border-right: none; border-bottom: 1px solid #E0E0E0; }
+    .crono-table { font-size: 0.8rem; }
+    .crono-table td, .crono-table th { padding: 0.6rem 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">IE Politécnico del Pozón · PAT</div>
+  <ul class="nav-links">
+    <li><a href="#intro">Introducción</a></li>
+    <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="#modalidades">Tutoría</a></li>
+    <li><a href="#pat">PAT</a></li>
+    <li><a href="#cronograma">Cronograma</a></li>
+    <li><a href="#evaluacion">Evaluación</a></li>
+    <li><a href="#conclusiones">Conclusiones</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Plan de Acción Tutorial · 2025–2026</div>
+  <h1>Institución Educativa<br><span>Politécnico del Pozón</span></h1>
+  <p class="hero-sub">Orientación Vocacional · Tutoría Educativa · Acompañamiento Integral</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item">📍 Cartagena de Indias, Bolívar</span>
+    <span class="hero-meta-item">🏫 Preescolar a Grado 11°</span>
+    <span class="hero-meta-item">👥 ~1.800 Estudiantes</span>
+    <span class="hero-meta-item">📅 Ciclo 2025–2026</span>
+  </div>
+  <div class="hero-scroll">↓ desplázate para explorar</div>
+</section>
+
+<!-- INTRODUCCIÓN -->
+<section id="intro">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Punto de partida</p>
+      <h2 class="section-title">Introducción</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="intro-grid reveal">
+      <div class="intro-text">
+        <p>La IE Politécnico del Pozón, ubicada en el barrio El Pozón de Cartagena de Indias, atiende una población estudiantil diversa en condición de vulnerabilidad socioeconómica, con necesidades urgentes de orientación vocacional y construcción de proyecto de vida.</p>
+        <p>Este Plan de Acción Tutorial (PAT) responde a la necesidad de articular estrategias de acompañamiento tutorial que promuevan el <strong>desarrollo integral del alumnado</strong> desde preescolar hasta grado 11°, integrando acciones académicas, socioemocionales y vocacionales.</p>
+        <p>El PAT se fundamenta en los postulados de la orientación educativa contemporánea, que concibe la tutoría como un proceso continuo, personalizado y centrado en el estudiante, capaz de empoderar su aprendizaje y fortalecer su proyecto de vida.</p>
+      </div>
+      <div class="justif-card">
+        <h3>¿Por qué este PAT?</h3>
+        <ul class="justif-list">
+          <li>Alta deserción escolar en contextos de vulnerabilidad</li>
+          <li>Ausencia de proyectos de vida estructurados</li>
+          <li>Necesidad de orientación vocacional temprana</li>
+          <li>Diversidad de necesidades educativas especiales</li>
+          <li>Demanda urgente de articulación familia–escuela</li>
+          <li>Contexto socioeconómico desafiante que exige acompañamiento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Contexto institucional</p>
+      <h2 class="section-title">Diagnóstico Institucional y Contextual</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="diag-grid reveal">
+      <div class="diag-card">
+        <div class="diag-card-icon">🏫</div>
+        <h3>La Institución</h3>
+        <ul>
+          <li>IE Politécnico del Pozón, Cartagena de Indias</li>
+          <li>Niveles: Preescolar a Grado 11°</li>
+          <li>Jornadas: mañana y tarde</li>
+          <li>Sede única en zona urbano-marginal</li>
+          <li>Enfoque en formación técnica y ciudadana</li>
+        </ul>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">👥</div>
+        <h3>Población Estudiantil</h3>
+        <ul>
+          <li>Aproximadamente 1.800 estudiantes</li>
+          <li>Estrato socioeconómico 1 y 2</li>
+          <li>Alta presencia de familias monoparentales</li>
+          <li>Población en situación de desplazamiento</li>
+          <li>Diversidad étnica y cultural significativa</li>
+        </ul>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">🎯</div>
+        <h3>Necesidades Identificadas</h3>
+        <ul>
+          <li>Bajo nivel de orientación vocacional</li>
+          <li>Índices de deserción y repitencia escolar</li>
+          <li>Dificultades de convivencia y conflicto</li>
+          <li>Escasa articulación entre familia y escuela</li>
+          <li>Presencia de necesidades educativas especiales</li>
+        </ul>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">💪</div>
+        <h3>Fortalezas Institucionales</h3>
+        <ul>
+          <li>Compromiso e identidad del cuerpo docente</li>
+          <li>Comunidad educativa participativa</li>
+          <li>Vínculo con el sector productivo local</li>
+          <li>Programas activos de bienestar estudiantil</li>
+          <li>Enfoque vocacional en la media técnica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section id="modalidades">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Fundamentos teóricos</p>
+      <h2 class="section-title">Modalidades de Tutoría Educativa</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="mod-grid reveal">
+      <div class="mod-card individual">
+        <div class="mod-icon">👤</div>
+        <h3>Tutoría Individual</h3>
+        <p>Acompañamiento personalizado al estudiante, atendiendo sus dimensiones académica, emocional y social desde una relación de confianza y escucha activa.</p>
+        <span class="mod-badge">✔ Estudiantes con riesgo de deserción, NEE o crisis vocacional</span>
+      </div>
+      <div class="mod-card grupal">
+        <div class="mod-icon">👥</div>
+        <h3>Tutoría Grupal</h3>
+        <p>Espacio colectivo de orientación, diálogo y convivencia que toma el aula como unidad de intervención, fomentando la autonomía y cohesión grupal.</p>
+        <span class="mod-badge">✔ Sesiones semanales por grupo-clase en todos los niveles</span>
+      </div>
+      <div class="mod-card tecnica">
+        <div class="mod-icon">🔧</div>
+        <h3>Tutoría Técnica</h3>
+        <p>Retroalimentación institucional que vincula la información tutorial con la mejora de los procesos docentes, administrativos y organizativos del centro.</p>
+        <span class="mod-badge">✔ Reuniones con docentes, orientadores y coordinación</span>
+      </div>
+      <div class="mod-card diversidad">
+        <div class="mod-icon">🌈</div>
+        <h3>Tutoría de la Diversidad</h3>
+        <p>Atención inclusiva de estudiantes con NEE, minorías culturales y grupos vulnerables, promoviendo la equidad y el respeto a la diferencia como valor educativo.</p>
+        <span class="mod-badge">✔ Adaptaciones curriculares y estrategias diferenciadas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAT ETAPAS -->
+<section id="pat">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Estructura del plan</p>
+      <h2 class="section-title">Diseño del Plan de Acción Tutorial</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <!-- INGRESO -->
+    <div class="etapa-block reveal">
+      <div class="etapa-header">
+        <span>🎒</span>
+        <h3>Etapa 1: Ingreso y Acogida</h3>
+      </div>
+      <div class="etapa-sub">Preescolar – Grado 5° · Primeros meses del ciclo escolar</div>
+      <div class="etapa-cols">
+        <div class="etapa-col academica">
+          <div class="etapa-col-title">Acciones Académicas</div>
+          <ul>
+            <li>Jornadas de acogida e inducción escolar</li>
+            <li>Diagnóstico de estilos de aprendizaje</li>
+            <li>Nivelación de competencias básicas</li>
+            <li>Talleres de hábitos y técnicas de estudio</li>
+          </ul>
+        </div>
+        <div class="etapa-col socioemocional">
+          <div class="etapa-col-title">Acciones Socioemocionales</div>
+          <ul>
+            <li>Dinámicas de integración grupal</li>
+            <li>Identificación de redes de apoyo familiar</li>
+            <li>Talleres de autoconocimiento e identidad</li>
+            <li>Detección de estudiantes en riesgo</li>
+          </ul>
+        </div>
+        <div class="etapa-col vocacional">
+          <div class="etapa-col-title">Acciones Vocacionales</div>
+          <ul>
+            <li>Exploración de intereses y aptitudes</li>
+            <li>Presentación del proyecto de vida</li>
+            <li>Vinculación familia-escuela en orientación</li>
+            <li>Sensibilización sobre metas académicas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESARROLLO -->
+    <div class="etapa-block reveal">
+      <div class="etapa-header" style="background: #2E7D32;">
+        <span>📚</span>
+        <h3>Etapa 2: Desarrollo de los Estudios</h3>
+      </div>
+      <div class="etapa-sub" style="background: #4CAF50; color: white;">Grados 6° – 9° · Durante todo el ciclo escolar</div>
+      <div class="etapa-cols">
+        <div class="etapa-col academica">
+          <div class="etapa-col-title">Acciones Académicas</div>
+          <ul>
+            <li>Seguimiento al rendimiento académico</li>
+            <li>Acompañamiento en dificultades de aprendizaje</li>
+            <li>Orientación en elección de asignaturas optativas</li>
+            <li>Pensamiento crítico y resolución de problemas</li>
+          </ul>
+        </div>
+        <div class="etapa-col socioemocional">
+          <div class="etapa-col-title">Acciones Socioemocionales</div>
+          <ul>
+            <li>Programa de convivencia y manejo de conflictos</li>
+            <li>Talleres de inteligencia emocional</li>
+            <li>Atención de crisis personales y vocacionales</li>
+            <li>Educación en equidad de género y diversidad</li>
+          </ul>
+        </div>
+        <div class="etapa-col vocacional">
+          <div class="etapa-col-title">Acciones Vocacionales</div>
+          <ul>
+            <li>Exploración de áreas de interés profesional</li>
+            <li>Visitas a empresas e instituciones locales</li>
+            <li>Ferias de orientación vocacional</li>
+            <li>Construcción del proyecto de vida personal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EGRESO -->
+    <div class="etapa-block reveal">
+      <div class="etapa-header" style="background: #6A1B9A;">
+        <span>🎓</span>
+        <h3>Etapa 3: Media Vocacional y Egreso</h3>
+      </div>
+      <div class="etapa-sub" style="background: #AB47BC; color: white;">Grados 10° – 11° · Etapa final y transición laboral / universitaria</div>
+      <div class="etapa-cols">
+        <div class="etapa-col academica">
+          <div class="etapa-col-title">Acciones Académicas</div>
+          <ul>
+            <li>Orientación sobre programas técnicos y universitarios</li>
+            <li>Preparación para pruebas ICFES / Saber 11°</li>
+            <li>Asesoría en becas y oportunidades de formación</li>
+            <li>Introducción a la educación superior o SENA</li>
+          </ul>
+        </div>
+        <div class="etapa-col socioemocional">
+          <div class="etapa-col-title">Acciones Socioemocionales</div>
+          <ul>
+            <li>Manejo de la ansiedad ante el cambio de etapa</li>
+            <li>Talleres de liderazgo y trabajo en equipo</li>
+            <li>Fortalecimiento de autoestima y autonomía</li>
+            <li>Cierre del ciclo escolar con sentido de logro</li>
+          </ul>
+        </div>
+        <div class="etapa-col vocacional">
+          <div class="etapa-col-title">Acciones Vocacionales</div>
+          <ul>
+            <li>Consolidación del proyecto de vida y carrera</li>
+            <li>Encuentros con egresados y profesionales</li>
+            <li>Orientación para la inserción laboral temprana</li>
+            <li>Vinculación con programas del SENA y MEN</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section id="cronograma">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Organización temporal</p>
+      <h2 class="section-title">Cronograma Tentativo</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="crono-table">
+        <thead>
+          <tr>
+            <th>Período</th>
+            <th>Etapa</th>
+            <th>Acciones Prioritarias</th>
+            <th>Actores Involucrados</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Enero – Febrero</td>
+            <td><span class="etapa-tag tag-ingreso">Ingreso y Acogida</span></td>
+            <td>Jornadas de inducción, diagnóstico inicial, integración grupal, identificación de estudiantes en riesgo</td>
+            <td>Orientador, Tutores, Familias</td>
+          </tr>
+          <tr>
+            <td>Marzo – Mayo</td>
+            <td><span class="etapa-tag tag-desarrollo">Desarrollo I</span></td>
+            <td>Hábitos de estudio, convivencia, exploración vocacional temprana, retroalimentación a docentes</td>
+            <td>Docentes, Orientador, Tutores</td>
+          </tr>
+          <tr>
+            <td>Junio – Agosto</td>
+            <td><span class="etapa-tag tag-desarrollo">Desarrollo II</span></td>
+            <td>Proyecto de vida, talleres de género, atención a NEE, ferias de orientación vocacional</td>
+            <td>Orientador, Psicólogo, Familias</td>
+          </tr>
+          <tr>
+            <td>Sept. – Octubre</td>
+            <td><span class="etapa-tag tag-media">Media Vocacional</span></td>
+            <td>Orientación ICFES, visitas a IES, encuentros con egresados, liderazgo estudiantil</td>
+            <td>Orientador, SENA, IES aliadas</td>
+          </tr>
+          <tr>
+            <td>Nov. – Diciembre</td>
+            <td><span class="etapa-tag tag-egreso">Egreso y Evaluación</span></td>
+            <td>Cierre del ciclo escolar, evaluación sumativa del PAT, propuestas de mejora para el siguiente ciclo</td>
+            <td>Equipo directivo, Orientador, Tutores</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- EVALUACIÓN -->
+<section id="evaluacion">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Seguimiento y mejora</p>
+      <h2 class="section-title">Evaluación del PAT</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="eval-grid reveal">
+      <div class="eval-card formativa">
+        <h3>📊 Evaluación Formativa (Continua)</h3>
+        <ul class="eval-list">
+          <li>Observación sistemática en sesiones de tutoría</li>
+          <li>Registros del orientador y tutores por grupo</li>
+          <li>Retroalimentación bimestral con cuerpo docente</li>
+          <li>Encuestas de satisfacción al alumnado</li>
+          <li>Seguimiento de indicadores de deserción y convivencia</li>
+          <li>Ajustes periódicos al plan según resultados obtenidos</li>
+        </ul>
+      </div>
+      <div class="eval-card sumativa">
+        <h3>📋 Evaluación Sumativa (Final)</h3>
+        <ul class="eval-list">
+          <li>Informe anual de resultados del PAT</li>
+          <li>Análisis de logros y dificultades identificadas</li>
+          <li>Encuesta final a estudiantes, docentes y familias</li>
+          <li>Revisión de indicadores: permanencia, convivencia, vocación</li>
+          <li>Propuestas de mejora para el siguiente ciclo escolar</li>
+          <li>Socialización con la comunidad educativa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSIONES -->
+<section id="conclusiones">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Reflexiones finales</p>
+      <h2 class="section-title">Conclusiones y Propuestas de Mejora</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="conclu-grid reveal">
+      <div>
+        <ul class="conclu-list">
+          <li class="conclu-item">
+            <span class="conclu-num">01</span>
+            <span class="conclu-text">El PAT permite articular orientación vocacional y tutoría de forma integral en los tres niveles educativos de la institución.</span>
+          </li>
+          <li class="conclu-item">
+            <span class="conclu-num">02</span>
+            <span class="conclu-text">La contextualización al entorno vulnerable del barrio El Pozón es clave para la eficacia y pertinencia de las intervenciones tutoriales.</span>
+          </li>
+          <li class="conclu-item">
+            <span class="conclu-num">03</span>
+            <span class="conclu-text">La participación activa de toda la comunidad educativa garantiza sostenibilidad y coherencia del plan a largo plazo.</span>
+          </li>
+          <li class="conclu-item">
+            <span class="conclu-num">04</span>
+            <span class="conclu-text">El seguimiento continuo y la evaluación formativa aseguran la mejora permanente del proceso tutorial a lo largo del ciclo.</span>
+          </li>
+          <li class="conclu-item">
+            <span class="conclu-num">05</span>
+            <span class="conclu-text">La orientación vocacional desde grados tempranos reduce la deserción escolar y fortalece la construcción del proyecto de vida.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mejoras-card">
+        <h3>Propuestas de Mejora</h3>
+        <ul class="mejoras-list">
+          <li>Crear un departamento de orientación consolidado y permanente</li>
+          <li>Incorporar psicólogo escolar de tiempo completo</li>
+          <li>Establecer convenios con SENA e IES de Cartagena</li>
+          <li>Desarrollar plataforma digital de seguimiento tutorial</li>
+          <li>Formar y certificar a los docentes como tutores activos</li>
+          <li>Involucrar activamente a las familias como actores del PAT</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">IE Politécnico del Pozón</div>
+  <p>Plan de Acción Tutorial · Ciclo Escolar 2025 – 2026</p>
+  <p>Cartagena de Indias, Bolívar · Colombia</p>
+  <div class="footer-divider"></div>
+  <p class="footer-quote">"La orientación vocacional no es solo elegir una carrera, es construir el proyecto de vida que da sentido al aprendizaje."</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#F9A825' : '#A5D6A7';
+    });
+  });
+</script>
+</body>
+</html>
